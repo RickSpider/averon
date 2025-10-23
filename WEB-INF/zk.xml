@@ -47,6 +47,11 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
         <!-- Permite que ZK acepte peticiones AJAX desde el proxy -->
         <update-uri-check>false</update-uri-check>
     </desktop-config>
+    
+    <library-property>
+    <name>org.zkoss.zk.ui.http.forwardedPrefix</name>
+    <value>/averon</value>
+	</library-property>
 	
 	<library-property>
 		<name>org.zkoss.theme.preferred</name>
