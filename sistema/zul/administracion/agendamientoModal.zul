@@ -1,0 +1,149 @@
+<?page title="agendamientoModal" contentType="text/html;charset=UTF-8"?>
+
+<?component name="finder" templateURI="/doxacore/zul/component/finder.zul"?>
+<zk>
+
+
+	<window border="normal" position="center,center" closable="true"
+		mode="modal" action="show: slideDown;hide: slideUp" width="350px">
+
+		<caption label="Agendamiento Crear/Ver/Editar"
+			style="font-weight:bold" />
+
+		<tablelayout columns="2">
+
+			<tablechildren>
+				<label value="ID:" style="font-weight:bold" />
+			</tablechildren>
+
+			<tablechildren>
+				<textbox
+					value="@load(vm.agendamientoSelected.agendamientoid)"
+					readonly="true" />
+			</tablechildren>
+
+			<tablechildren>
+				<label value="Sucursal" style="font-weight:bold" />
+			</tablechildren>
+
+			<tablechildren>
+				<textbox
+					value="@load(vm.agendamientoSelected.sucursal.nombre)"
+					readonly="true" />
+			</tablechildren>
+
+			<tablechildren>
+				<label value="Tipo:" style="font-weight:bold" />
+			</tablechildren>
+
+			<tablechildren>
+				<finder
+					finderValue="@load(vm.agendamientoSelected.agendamientoTipo.tipo)"
+					finderModel="@init(vm.agendamientoTipoFinder)" />
+			</tablechildren>
+
+
+
+			<tablechildren>
+				<label value="Fecha Inicio:" style="font-weight:bold" />
+			</tablechildren>
+
+			<tablechildren>
+				<datebox
+					value="@load(vm.agendamientoSelected.inicio) @save(vm.agendamientoSelected.inicio, before='guardar')"
+					format="dd/MM/yyyy HH:mm:ss" width="150px" />
+			</tablechildren>
+
+			<tablechildren>
+				<label value="Fecha Fin:" style="font-weight:bold" />
+			</tablechildren>
+
+			<tablechildren>
+				<datebox
+					value="@load(vm.agendamientoSelected.fin) @save(vm.agendamientoSelected.fin, before='guardar')"
+					format="dd/MM/yyyy HH:mm:ss" width="150px" />
+			</tablechildren>
+
+		</tablelayout>
+
+		<groupbox visible="@load(vm.gruposDisable[0])">
+			<caption label="Servicio" />
+
+			<tablelayout columns="2">
+
+				<tablechildren>
+					<label value="Servicio:" style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<finder
+						finderValue="@load(vm.agendamientoSelected.servicio.nombre)"
+						finderModel="@init(vm.servicioFinder)" />
+				</tablechildren>
+
+				<tablechildren>
+					<label value="Persona:" style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<finder
+						finderValue="@load(vm.agendamientoSelected.persona.razonSocial)"
+						finderModel="@init(vm.personaFinder)" />
+				</tablechildren>
+
+				<tablechildren>
+					<label value="Funcionario:"
+						style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<finder
+						finderValue="@load(vm.agendamientoSelected.funcionario.nombre)"
+						finderModel="@init(vm.funcionarioFinder)" />
+				</tablechildren>
+
+			</tablelayout>
+
+		</groupbox>
+
+		<groupbox visible="@load(vm.gruposDisable[1])">
+			<caption label="Recordatorio" />
+
+			<tablelayout columns="2">
+
+				<tablechildren>
+					<label value="Titulo:" style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<textbox
+						value="@bind(vm.agendamientoSelected.titulo)" />
+				</tablechildren>
+
+				<tablechildren>
+					<label value="Contenido:" style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<textbox
+						value="@bind(vm.agendamientoSelected.contenido)" rows="3" />
+				</tablechildren>
+
+			</tablelayout>
+
+
+		</groupbox>
+
+		<space height="10px" />
+
+		<hlayout>
+
+			<button label="Aceptar" onClick="@command('guardar')" />
+
+		</hlayout>
+
+
+
+
+	</window>
+</zk>

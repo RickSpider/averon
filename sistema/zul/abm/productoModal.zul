@@ -1,0 +1,161 @@
+<?page title="productoModal" contentType="text/html;charset=UTF-8"?>
+
+<?component name="finder" templateURI="/doxacore/zul/component/finder.zul"?>
+
+<zk>
+
+
+	<window border="normal"
+		position="center,center" closable="true" mode="modal"
+		action="show: slideDown;hide: slideUp" width="550px">
+		
+		<caption label="Producto Crear/Ver/Editar" style="font-weight:bold"/>
+		
+		<vlayout >
+		
+			<tablelayout columns="4">
+
+				<tablechildren>
+					<label value="ID:" style="font-weight:bold"  />
+				</tablechildren>
+
+				<tablechildren>
+					<textbox
+						value="@load(vm.productoSelected.productoid)" readonly="true" width="50px"/>
+				</tablechildren>
+				
+				<tablechildren>
+					<label value="Marca:"
+						style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<finder
+						finderValue="@load(vm.productoSelected.marca.nombre)"
+						finderModel="@init(vm.marcaFinder)" />
+				</tablechildren>
+
+				<tablechildren>
+					<label value="Nombre:" style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<textbox value="@bind(vm.productoSelected.nombre)" />
+				</tablechildren>
+
+				<tablechildren>
+					<label value="Precio Venta:"
+						style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<doublebox
+						value="@bind(vm.productoSelected.precioVenta)"
+						style="text-align:right" format="#,###.##" />
+				</tablechildren>
+
+				<tablechildren>
+					<label value="Precio Compra:"
+						style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<doublebox
+						value="@bind(vm.productoSelected.precioCompra)" format="#,###.##" />
+				</tablechildren>
+				
+				<tablechildren>
+					<label value="Moneda Venta:"
+						style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<finder
+						finderValue="@load(vm.productoSelected.monedaVentaTipo.tipo)"
+						finderModel="@init(vm.monedaTipoFinder)" />
+				</tablechildren>
+
+				<tablechildren>
+					<label value="IVA Tipo:" style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<finder
+						finderValue="@load(vm.productoSelected.ivaTipo.tipo)"
+						finderModel="@init(vm.ivaTipoFinder)" />
+				</tablechildren>
+				
+				<tablechildren>
+					<label value="Unidad de Medida:"
+						style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<finder
+						finderValue="@load(vm.productoSelected.unidadMedidaTipo.tipo)"
+						finderModel="@init(vm.unidadMedidaTipoFinder)" />
+				</tablechildren>
+
+				<tablechildren>
+					<label value="Controlar Stock:"
+						style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<checkbox
+						checked="@bind(vm.productoSelected.controlStock)" mold="switch" />
+				</tablechildren>
+
+
+			</tablelayout>
+
+			<listbox emptyMessage="lista vacía..." mold="paging"
+				autopaging="true" checkmark="true" height="150px"
+				model="@load(vm.productoSelected.inventario)">
+
+				<listhead>
+
+					<listheader hflex="min" align="center" />
+					<listheader label="Deposito" align="center" />
+					<listheader label="Cantidad" hflex="min"
+						align="center" />
+
+
+				</listhead>
+
+				<template name="model">
+
+					<listitem>
+
+						<listcell />
+						<listcell label="@load(each.deposito.nombre)" />
+						<listcell>
+
+							<doublebox value="@bind(each.cantidad)"
+								readonly="true" style="text-align: right;"/>
+
+						</listcell>
+
+
+					</listitem>
+
+				</template>
+
+
+			</listbox>
+
+		</vlayout>
+
+		<space height="10px" />
+
+		<hlayout>
+
+			<button label="Aceptar" onClick="@command('guardar')" />
+
+		</hlayout>
+
+
+
+
+	</window>
+</zk>

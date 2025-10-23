@@ -1,0 +1,117 @@
+<?page title="Depositos" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window border="normal"
+		viewModel="@id('vm') @init('com.averon.sistema.empresa.DepositoVM')"
+		vflex="1" id="Body" apply="org.zkoss.bind.BindComposer">
+		
+		<caption label="Deposito" style="font-weight:bold"/>
+
+		<hlayout vflex="1">
+
+			<vlayout hflex="1" vflex="1">
+
+				<hbox pack="end" hflex="1">
+
+					<button label="Agregar" iconSclass=" z-icon-plus"
+						onClick="@command('modalDepositoAgregar')"
+						disabled="@load(!vm.opCrearDeposito)" />
+
+				</hbox>
+
+				<listbox emptyMessage="lista vacía..." mold="paging" autopaging="true"
+					vflex="1" model="@load(vm.lDepositos)" checkmark="true">
+
+					
+
+					<listhead >
+
+						<listheader hflex="min" align="center" />
+						<listheader label="ID" align="center"
+							hflex="min" />
+						<listheader label="SUCRUSAL" align="center" />
+						<listheader label="NOMBRE" align="center" />						
+
+						<listheader align="center" width="150px" />
+
+
+					</listhead>
+
+					<auxhead>
+
+						<auxheader />
+						<auxheader > 
+							<textbox value="@bind(vm.filtroColumns[0])"
+								instant="true" onChange="@command('filtrarDeposito')"
+								hflex="1" />
+						</auxheader>
+						<auxheader>
+							<textbox value="@bind(vm.filtroColumns[1])"
+								instant="true" onChange="@command('filtrarDeposito')"
+								hflex="1" />
+						</auxheader>	
+						
+						<auxheader>
+							<textbox value="@bind(vm.filtroColumns[2])"
+								instant="true" onChange="@command('filtrarDeposito')"
+								hflex="1" />
+						</auxheader>			
+					
+						<auxheader />
+
+					</auxhead>
+
+					<template name="model">
+
+						<listitem>
+							<listcell />
+							<listcell label="@load(each[0])" style="text-align: right;"/>
+							<listcell label="@load(each[1])" style="text-align: left;"/>	
+							<listcell label="@load(each[2])" style="text-align: left;"/>							
+
+
+							<listcell>
+								<hlayout>
+																		
+									<button iconSclass="z-icon-edit"
+										onClick="@command('modalDeposito', depositoid=each[0])"
+										tooltiptext="Editar"
+										disabled="@load(!vm.opEditarDeposito)" />
+									<button iconSclass="z-icon-trash-o"
+										class="doxa-button-red"
+										onClick="@command('borrarDepositoConfirmacion', depositoid=each[0])"
+										tooltiptext="Borrar"
+										disabled="@load(!vm.opBorrarDeposito)" />
+
+
+								</hlayout>
+
+
+							</listcell>
+
+
+						</listitem>
+
+
+					</template>
+
+					<listfoot>
+						<listfooter span="4" align="left">
+							<hlayout>
+								<label
+									value="@load(vm.lDepositos.size())" />
+								<label value="items" />
+							</hlayout>
+						</listfooter>
+					</listfoot>
+
+
+				</listbox>
+
+			</vlayout>
+
+
+
+		</hlayout>
+
+	</window>
+</zk>

@@ -1,0 +1,39 @@
+<?page title="Calendario" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window border="normal"
+		viewModel="@id('vm') @init('com.averon.sistema.main.CalendarVM')"
+				vflex="1" id="Body" apply="org.zkoss.bind.BindComposer">
+				
+		<caption label="Calendario" style="font-weight:bold"/>
+
+		<div apply="com.averon.sistema.main.calendar.CalendarController"
+			  vflex="1">
+			<hlayout valign="middle">
+				<button id="today" label="Today" />
+				<button id="prev" iconSclass="z-icon-arrow-left" />
+				<button id="next" iconSclass="z-icon-arrow-right" />
+			 <separator width="50px" />
+			 	
+			 	<button id="pageDay" label="Día"  width="60px" />
+				<button id="pageWeek" label="Semana" width="100px" />
+				<button id="pageMonth" label="Mes" width="60px" /> 
+				
+				<!-- <separator width="50px" />
+				Filter :
+				<textbox id="filter" />
+				<button id="applyFilter" label="Apply" />
+				<button id="resetFilter" label="Reset" />-->
+				
+			</hlayout> 
+
+			<separator bar="true" height="20px" />
+			
+			<calendars id="calendars" firstDayOfWeek="Sunday" 
+				 timeZone="Main=GMT-3" mold="month" model="@load(vm.calendarModel)" 
+				 beginTime="6" endTime="23" timeslots="4" hflex="1" vflex="1"
+				 onItemUpdate="@command('updateAgendamiento', event=event)"/>
+		
+		</div>
+			
+	</window>
+</zk>

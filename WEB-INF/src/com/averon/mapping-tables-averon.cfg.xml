@@ -1,0 +1,19 @@
+<mapping class="com.averon.modelo.Empresa" />
+<mapping class="com.averon.modelo.Sucursal" />
+<mapping class="com.averon.modelo.EmpresaUsuario" />
+<mapping class="com.averon.modelo.SucursalUsuario" />
+<mapping class="com.averon.modelo.Persona" />
+<mapping class="com.averon.modelo.Marca" />
+<mapping class="com.averon.modelo.Producto" />
+<mapping class="com.averon.modelo.Sucursal" />
+<mapping class="com.averon.modelo.Deposito" />
+
+
+<mapping class="com.averon.modelo.ProductoDeposito" />
+<mapping class="com.averon.modelo.Ajuste" />
+<mapping class="com.averon.modelo.AjusteDetalle" />
+
+
+<mapping class="com.averon.modelo.Agendamiento"/>
+<mapping class="com.averon.modelo.Funcionario"/>
+<mapping class="com.averon.modelo.Proveedor"/>

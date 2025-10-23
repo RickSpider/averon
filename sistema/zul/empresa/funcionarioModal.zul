@@ -1,0 +1,195 @@
+<?page title="funcionarioModal" contentType="text/html;charset=UTF-8"?>
+
+<?component name="finder" templateURI="/doxacore/zul/component/finder.zul"?>
+
+<zk>
+
+
+	<window border="normal" position="center,center" closable="true"
+		mode="modal" action="show: slideDown;hide: slideUp" width="600px">
+
+		<caption label="Funcionario Crear/Ver/Editar"
+			style="font-weight:bold" />
+
+
+		<tabbox>
+			<tabs>
+				<tab label="Datos" />
+				<tab label="Login" />
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<tablelayout columns="4">
+
+						<tablechildren>
+							<label value="ID Interno:" style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren colspan="3">
+							<textbox
+								value="@load(vm.funcionarioSelected.idInterno)" readonly="true"
+								width="80px" />
+						</tablechildren>
+						
+						<tablechildren>
+							<label value="Ingreso:" style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<datebox format="dd/MM/yyyy" value="@bind(vm.funcionarioSelected.fechaIngreso)"/>
+						</tablechildren>
+
+						<tablechildren>
+							<label value="Tipo:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<finder
+								finderValue="@load(vm.funcionarioSelected.funcionarioTipo.tipo)"
+								finderModel="@init(vm.funcionarioTipoFinder)" />
+						</tablechildren>
+
+						<tablechildren>
+							<label value="Documento Tipo:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<finder
+								finderValue="@load(vm.funcionarioSelected.persona.documentoTipo.tipo)"
+								finderModel="@init(vm.documentoTipoFinder)" />
+						</tablechildren>
+
+						<tablechildren>
+							<label value="Documento #"
+								style="font-weight:bold" />
+						</tablechildren>
+						
+						<tablechildren>
+							<textbox
+								value="@bind(vm.funcionarioSelected.persona.documentoNum)" />
+						</tablechildren>
+						
+
+						<tablechildren>
+							<label value="Nombre:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<textbox
+								value="@bind(vm.funcionarioSelected.persona.nombre)" />
+						</tablechildren>
+
+						<tablechildren>
+							<label value="Apellido:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<textbox
+								value="@bind(vm.funcionarioSelected.persona.apellido)" />
+						</tablechildren>
+
+						
+						<tablechildren>
+							<label value="Fecha de Nacimiento:" style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<datebox format="dd/MM/yyyy" value="@bind(vm.funcionarioSelected.persona.fechaNacimiento)"/>
+						</tablechildren>
+						
+						<tablechildren>
+							<label value="Telefono"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<textbox
+								value="@bind(vm.funcionarioSelected.persona.telefono)"
+								placeholder="ej: 09xx123123" />
+						</tablechildren>
+
+						<tablechildren>
+							<label value="e-mail"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<textbox
+								value="@bind(vm.funcionarioSelected.persona.email)"
+								constraint="/^$|^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/: Email invalido"
+								placeholder="ej: usuario@tudominio.com" />
+						</tablechildren>
+
+						<tablechildren>
+							<label value="Activo:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<checkbox
+								checked="@bind(vm.funcionarioSelected.activo)" mold="switch" />
+						</tablechildren>
+
+
+					</tablelayout>
+
+				</tabpanel>
+				<tabpanel>
+
+					<tablelayout columns="4">
+
+						<tablechildren>
+							<label value="Usuario:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<textbox
+								value="@bind(vm.usuarioSelected.account)" />
+						</tablechildren>
+
+						<tablechildren>
+							<label value="Password:" 
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<textbox type="password"
+								value="@bind(vm.usuarioSelected.password)" />
+						</tablechildren>
+
+						<tablechildren>
+							<label value="Activo:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<checkbox
+								checked="@bind(vm.usuarioSelected.activo)" mold="switch"/>
+						</tablechildren>
+
+					</tablelayout>
+
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+
+
+
+		<space height="10px" />
+
+		<hlayout>
+
+			<button label="Aceptar" onClick="@command('guardar')" />
+
+		</hlayout>
+
+
+
+
+	</window>
+</zk>

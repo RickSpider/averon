@@ -1,0 +1,138 @@
+<?page title="patologiaModal" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="Agendamiento Crear/Ver/Editar" border="normal"
+		position="center,center" closable="true" mode="modal"
+		action="show: slideDown;hide: slideUp">
+
+		<vlayout>
+
+			<tablelayout columns="4">
+			
+				<!-- <tablechildren>
+					<label value="Agendamiento ID:" style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren colspan="3">
+					<textbox
+						value="@load(vm.agendamientoSelected.idInterno)" readonly="true" />
+				</tablechildren> -->
+			
+				<tablechildren>
+					<label value="Sucursal:" style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren colspan="3">
+					<textbox
+						value="@load(vm.agendamientoSelected.sucursal.nombre)" readonly="true" />
+				</tablechildren>
+
+				<tablechildren>
+					<label value="Fecha desde:" style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<datebox
+						value="@bind(vm.agendamientoSelected.inicio)" format="dd/MM/yyyy HH:mm" width="150px"/>
+				</tablechildren>
+
+				<tablechildren>
+					<label value="Fecha hasta:" style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<datebox
+						value="@bind(vm.agendamientoSelected.fin)" format="dd/MM/yyyy HH:mm" width="150px"/>
+				</tablechildren>
+
+				<tablechildren>
+					<label value="Servicio:" style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<searchbox model="@init(vm.lServiciosSearchModel)" placeholder="Seleccione una parsona."
+						selectedItem="@bind(vm.servicioSearchModelSelected)"
+						autoclose="true"  multiple="false">
+
+
+						<template name="model">
+							
+							${each.idInterno} - ${each.nombre}
+							
+						</template>
+
+					</searchbox>
+				</tablechildren>
+
+				<tablechildren>
+					<label value="Persona:" style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<searchbox model="@init(vm.lPersonasSearchModel)" placeholder="Seleccione una parsona."
+						selectedItem="@bind(vm.personaSearchModelSelected)"
+						autoclose="true"  multiple="false">
+
+
+						<template name="model">
+							
+							${each.idInterno} - ${each.nombreCompleto} - ${each.docnum}
+							
+						</template>
+
+					</searchbox>
+				</tablechildren>
+				
+				<tablechildren>
+					<label value="Funcionario:" style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<searchbox model="@init(vm.lFuncionariosSearchModel)" placeholder="Seleccione un funcionario."
+						selectedItem="@bind(vm.funcionarioSearchModelSelected)"
+						autoclose="true"  multiple="false">
+
+
+						<template name="model">
+							
+							${each.idInterno} - ${each.nombreCompleto} - ${each.docnum}
+							
+						</template>
+
+					</searchbox>
+				</tablechildren>
+				
+				<tablechildren>
+					<label value="Estado:" style="font-weight:bold" />
+				</tablechildren>
+
+				<tablechildren>
+					<searchbox model="@init(vm.lEstadosTiposSearchModel)" placeholder="Seleccione un Estado."
+						selectedItem="@bind(vm.estadoTipoSearchModelSelected)"
+						autoclose="true" multiple="false" >
+
+
+						<template name="model">
+							
+							${each.id} - ${each.nombre}
+							
+						</template>
+
+					</searchbox>
+				</tablechildren>
+
+			</tablelayout>
+
+
+			<space height="10px" />
+
+			<hlayout>
+
+				<button label="Aceptar" onClick="@command('guardarAgendamiento')" />
+
+			</hlayout>
+
+		</vlayout>
+
+
+	</window>
+</zk>

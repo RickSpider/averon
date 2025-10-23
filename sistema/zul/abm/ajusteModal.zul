@@ -1,0 +1,135 @@
+<?page title="ajusteModal" contentType="text/html;charset=UTF-8"?>
+
+<?component name="finder" templateURI="/doxacore/zul/component/finder.zul"?>
+
+<zk>
+
+	<window border="normal"
+		position="center,center" closable="true" mode="modal"
+		action="show: slideDown;hide: slideUp" width="600px">
+		
+		<caption label="Sucursal Crear/Ver/Editar" style="font-weight:bold"/>
+
+		<tablelayout columns="4">
+
+			<tablechildren>
+				<label value="ID:" style="font-weight:bold" />
+			</tablechildren>
+
+			<tablechildren>
+				<textbox value="@load(vm.ajusteSelected.ajusteid)"
+					readonly="true" />
+			</tablechildren>
+			
+			<tablechildren>
+				<label value="Fecha:" style="font-weight:bold" />
+			</tablechildren>
+
+			<tablechildren>
+				<datebox value="@bind(vm.ajusteSelected.fecha)" format="dd/MM/yyyy HH:mm:ss" width="150px"/>	
+			</tablechildren>
+			
+			<tablechildren>
+				<label value="Deposito:" style="font-weight:bold" />
+			</tablechildren>
+
+			<tablechildren>
+				<finder finderValue="@load(vm.ajusteSelected.deposito.nombre)"
+					finderModel="@init(vm.depositoFinder)" />
+			</tablechildren>
+			
+			<tablechildren>
+				<label value="Tipo Ajuste:" style="font-weight:bold" />
+			</tablechildren>
+
+			<tablechildren>
+				<finder finderValue="@load(vm.ajusteSelected.ajusteTipo.tipo)"
+					finderModel="@init(vm.ajusteTipoFinder)" />	
+			</tablechildren>
+			
+			<tablechildren>
+				<label value="Comentario:" style="font-weight:bold" />
+			</tablechildren>
+
+			<tablechildren colspan="3">
+				<textbox value="@bind(vm.ajusteSelected.comentario)" rows="3"/>	
+			</tablechildren>
+
+		
+
+		</tablelayout>
+
+		<space height="10px" />
+
+		<listbox emptyMessage="lista vacía..." mold="paging"
+			autopaging="true" vflex="1"
+			model="@load(vm.ajusteSelected.detalles)" checkmark="true">
+
+			<auxhead>
+
+				<auxheader colspan="4">
+
+					<hbox>
+
+						
+						<finder
+							finderValue="@load(vm.productoSelected.nombre)"
+							finderModel="@init(vm.productoFinder)" />
+						<button iconSclass="z-icon-plus" onClick="@command('agregarProducto')"/>
+
+					</hbox>
+
+
+
+				</auxheader>
+
+			</auxhead>
+
+			<listhead>
+
+				<listheader hflex="min" align="center" />
+				<listheader label="Producto" align="center" />
+				<listheader label="Cantidad" hflex="min" align="center" />
+
+				<listheader align="center" hflex="min" />
+
+
+			</listhead>
+
+			<template name="model">
+			
+				<listitem>
+				
+					<listcell/>
+					<listcell label="@load(each.producto.nombre)" style="text-align:left"/>
+					<listcell>
+					
+						<doublebox value="@bind(each.cantidad)" style="text-align:right"/> 
+					
+					</listcell>
+					<listcell>
+					
+						<button iconSclass="z-icon-trash"  class="doxa-button-red" onClick="@command('borrarAjusteDetalle', ajustedetalle = each)" />
+					
+					</listcell>
+				
+				</listitem>
+			
+			</template>
+
+
+		</listbox>
+		
+		<space height="10px" />
+
+		<hlayout>
+
+			<button label="Aceptar" onClick="@command('guardar')" />
+
+		</hlayout>
+
+
+
+
+	</window>
+</zk>

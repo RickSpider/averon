@@ -1,0 +1,147 @@
+<?page title="Funcionarios" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window border="normal"
+		viewModel="@id('vm') @init('com.averon.sistema.empresa.FuncionarioVM')"
+		vflex="1" id="Body" apply="org.zkoss.bind.BindComposer">
+		
+		<caption label="Funcionario" style="font-weight:bold"/>
+
+		<hlayout vflex="1">
+
+			<vlayout hflex="1" vflex="1">
+
+				<hbox pack="end" hflex="1">
+
+					<button label="Agregar" iconSclass=" z-icon-plus"
+						onClick="@command('modalFuncionarioAgregar')"
+						disabled="@load(!vm.opCrearFuncionario)" />
+
+				</hbox>
+
+				<listbox emptyMessage="lista vacía..." mold="paging" autopaging="true"
+					vflex="1" model="@load(vm.lFuncionarios)" checkmark="true">
+
+					
+
+					<listhead id="lh">
+
+						<listheader hflex="min" align="center" />
+						<listheader label="ID" align="center"
+							hflex="min" visible='false'/>
+						<listheader label="ID Interno" align="center"
+							hflex="min"/>
+						<listheader label="NOMBRE COMPLETO" align="center" />
+						<listheader label="DOCUMENTO #" align="center" />
+						<listheader label="TELEFONO" align="center" />
+						<listheader label="EMAIL" align="center" />
+						<listheader label="ACTIVO" align="center" hflex="min"/>
+						
+						
+						<listheader align="center" width="150px" />
+
+
+					</listhead>
+
+
+					<auxhead>
+
+						<auxheader />
+						<auxheader > 
+							<textbox value="@bind(vm.filtroColumns[0])"
+								instant="true" onChange="@command('filtrarFuncionario')"
+								hflex="1" />
+						</auxheader>
+						<auxheader>
+							<textbox value="@bind(vm.filtroColumns[1])"
+								instant="true" onChange="@command('filtrarFuncionario')"
+								hflex="1" />
+						</auxheader>
+
+						<auxheader>
+							<textbox value="@bind(vm.filtroColumns[2])"
+								instant="true" onChange="@command('filtrarFuncionario')"
+								hflex="1" />
+						</auxheader>		
+						
+						<auxheader>
+							<textbox value="@bind(vm.filtroColumns[3])"
+								instant="true" onChange="@command('filtrarFuncionario')"
+								hflex="1" />
+						</auxheader>	
+						<auxheader>
+							<textbox value="@bind(vm.filtroColumns[4])"
+								instant="true" onChange="@command('filtrarFuncionario')"
+								hflex="1" />
+						</auxheader>	
+						<auxheader>
+							<textbox value="@bind(vm.filtroColumns[5])"
+								instant="true" onChange="@command('filtrarFuncionario')"
+								hflex="1" />
+						</auxheader>	
+						
+						<auxheader/>
+
+						<auxheader />
+
+					</auxhead>
+
+					<template name="model">
+
+						<listitem>
+							<listcell />
+							<listcell label="@load(each[0])" style="text-align: right;"/>
+							<listcell label="@load(each[1])" style="text-align: left;"/>
+							<listcell label="@load(each[2])" style="text-align: left;"/>
+							<listcell label="@load(each[3])" style="text-align: left;"/>
+							<listcell label="@load(each[4])" style="text-align: left;"/>
+							<listcell label="@load(each[5])" style="text-align: left;"/>
+							<listcell label="@load(each[6])" style="text-align: left;"/>
+							
+
+
+							<listcell>
+								<hlayout>
+																		
+									<button iconSclass="z-icon-edit"
+										onClick="@command('modalFuncionario', funcionarioid=each[0])"
+										tooltiptext="Editar"
+										disabled="@load(!vm.opEditarFuncionario)" />
+									<button iconSclass="z-icon-trash-o"
+										class="doxa-button-red"
+										onClick="@command('borrarFuncionarioConfirmacion', funcionarioid=each[0])"
+										tooltiptext="Borrar"
+										disabled="@load(!vm.opBorrarFuncionario)" />
+
+
+								</hlayout>
+
+
+							</listcell>
+
+
+						</listitem>
+
+
+					</template>
+
+					<listfoot>
+						<listfooter span="${lh.getChildren().size()}" align="left">
+							<hlayout>
+								<label
+									value="@load(vm.lFuncionarios.size())" />
+								<label value="items" />
+							</hlayout>
+						</listfooter>
+					</listfoot>
+
+
+				</listbox>
+
+			</vlayout>
+
+
+
+		</hlayout>
+
+	</window>
+</zk>

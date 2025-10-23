@@ -1,0 +1,16 @@
+<?page title="Bienvenida" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window border="normal"
+		viewModel="@id('vm') @init('com.averon.sistema.main.BienvenidaVM')"
+		vflex="1" id="Body" apply="org.zkoss.bind.BindComposer">
+		
+		<caption label="@load(vm.empresaSelected.razonSocial)" style="font-weight:bold"/>
+
+		<hbox pack="center" align="center" vflex="1" hflex="1">
+		
+					<image src="@load(vm.empresaSelected.logopath)" style="max-width: 80vw; max-height: 80vh; width: auto; height: auto;"/>
+		
+		</hbox>
+
+	</window>
+</zk>

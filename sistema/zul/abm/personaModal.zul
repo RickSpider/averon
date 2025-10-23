@@ -1,0 +1,156 @@
+<?page title="personaModal" contentType="text/html;charset=UTF-8"?>
+
+<?component name="finder" templateURI="/doxacore/zul/component/finder.zul"?>
+
+<zk>
+
+
+	<window border="normal" position="center,center" closable="true"
+		mode="modal" action="show: slideDown;hide: slideUp" width="700px">
+
+		<caption label="Persona Crear/Ver/Editar"
+			style="font-weight:bold" />
+
+		
+
+					<tablelayout columns="4">
+
+						<tablechildren>
+							<label value="ID Interno:" style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren colspan="3">
+							<textbox
+								value="@load(vm.personaSelected.idInterno)" readonly="true" />
+						</tablechildren>
+						
+						<tablechildren>
+							<label value="Documento Tipo:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<finder
+								finderValue="@load(vm.personaSelected.documentoTipo.tipo)"
+								finderModel="@init(vm.documentoTipoFinder)" />
+						</tablechildren>
+
+						<tablechildren>
+							<label value="Documento #:"
+								style="font-weight:bold" />
+								
+								
+						</tablechildren>
+						
+						
+						<tablechildren>
+							<textbox
+								value="@bind(vm.personaSelected.documentoNum)"/>
+						</tablechildren>
+						
+						<tablechildren>
+							<label value="Nombre:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<textbox
+								value="@bind(vm.personaSelected.nombre)" />
+						</tablechildren>
+						
+						<tablechildren>
+							<label value="Apellido:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<textbox
+								value="@bind(vm.personaSelected.apellido)" />
+						</tablechildren>
+
+						
+						
+				
+
+						
+						<tablechildren>
+							<label value="Ruc:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<textbox
+								value="@bind(vm.personaSelected.ruc)" constraint="/(^$)|(^\d{7,9}-\d$)/ : Introduce un RUC válido"  placeholder="ej: 4524164-3"/>
+						</tablechildren>
+						
+						<tablechildren>
+							<label value="Razón Social:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<textbox
+								value="@bind(vm.personaSelected.razonSocial)" width="250px"/>
+						</tablechildren>
+
+						<tablechildren>
+							<label value="e-mail"
+								style="font-weight:bold"/>
+						</tablechildren>
+
+						<tablechildren>
+							<textbox
+								value="@bind(vm.personaSelected.email)" 
+								constraint="/^$|^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/: Email invalido"  
+								placeholder="ej: usuario@tudominio.com"/>
+						</tablechildren>
+
+						<tablechildren>
+							<label value="Telefono:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<textbox
+								value="@bind(vm.personaSelected.telefono)" type="tel"/>
+						</tablechildren>
+
+						<tablechildren>
+							<label value="Fecha de Nacimiento:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<datebox
+								value="@bind(vm.personaSelected.fechaNacimiento)" format="dd/MM/yyyy"/>
+						</tablechildren>
+						
+						<tablechildren>
+							<label value="Direccion:"
+								style="font-weight:bold" />
+						</tablechildren>
+
+						<tablechildren>
+							<textbox
+								value="@bind(vm.personaSelected.direccion)" width="250px" rows="3" />
+						</tablechildren>
+
+					</tablelayout>
+
+			
+
+
+
+		<space height="10px" />
+
+		<hlayout>
+
+			<button label="Aceptar" onClick="@command('guardar')" />
+
+		</hlayout>
+
+
+
+
+	</window>
+</zk>

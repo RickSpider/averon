@@ -1,0 +1,62 @@
+<?page title="empresaModal" contentType="text/html;charset=UTF-8"?>
+
+<?component name="finder" templateURI="/doxacore/zul/component/finder.zul"?>
+
+<zk>
+
+
+	<window border="normal"
+		position="center,center" closable="true" mode="modal"
+		action="show: slideDown;hide: slideUp" width="500px">
+		
+		<caption label="Empresa Crear/Ver/Editar" style="font-weight:bold"/>
+
+		<tablelayout columns="2">
+
+			<tablechildren>
+				<label value="ID:" style="font-weight:bold" />
+			</tablechildren>
+
+			<tablechildren>
+				<textbox value="@load(vm.empresaSelected.empresaid)" readonly="true" />
+			</tablechildren>
+			
+			<tablechildren>
+				<label value="Razón Social:" style="font-weight:bold" />
+			</tablechildren>
+
+			<tablechildren>
+				<textbox value="@bind(vm.empresaSelected.razonSocial)" />
+			</tablechildren>
+			
+			<tablechildren>
+				<label value="RUC:" style="font-weight:bold" />
+			</tablechildren>
+
+			<tablechildren>
+				<textbox value="@bind(vm.empresaSelected.ruc)" />
+			</tablechildren>
+			
+			<tablechildren>
+				<label value="Logo Path:" style="font-weight:bold" />
+			</tablechildren>
+
+			<tablechildren>
+				<textbox value="@bind(vm.empresaSelected.logopath)" />
+			</tablechildren>
+
+		</tablelayout>
+
+		<space height="10px" />
+
+		<hlayout>
+
+			<button label="Aceptar" onClick="@command('guardar')" />
+
+		</hlayout>
+
+
+
+
+	</window>
+</zk>
