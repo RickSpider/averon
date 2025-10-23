@@ -33,7 +33,7 @@ Copyright (C) 2004 Potix Corporation. All Rights Reserved.
 		-->
 		<init-param>
 			<param-name>update-uri</param-name>
-			<param-value>/averon/zkau</param-value>
+			<param-value>/zkau</param-value>
 		</init-param>
 
 		<!-- [Optional] Specifies whether to compress the output
@@ -106,7 +106,7 @@ Copyright (C) 2004 Potix Corporation. All Rights Reserved.
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>auEngine</servlet-name>
-		<url-pattern>/zkau/*</url-pattern>
+		<url-pattern>/averon/zkau/*</url-pattern>
 	</servlet-mapping>
 
 	<!-- Uncomment if you want to use the ZK filter to post process the HTML output
