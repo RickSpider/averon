@@ -20,7 +20,7 @@
     <!-- Compilar clases Java -->
     <target name="compile" depends="init, copy-hbm">
         <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false" 
-        	executable="${javac17}"
+        	executable="${javac17}" fork="true"
         	source="17" target="17">
             <classpath>
                 <fileset dir="${lib.dir}" includes="**/*.jar"/>
