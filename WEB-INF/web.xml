@@ -15,7 +15,7 @@ Copyright (C) 2004 Potix Corporation. All Rights Reserved.
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
                              https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
 
-	<description><![CDATA[ZK Sandbox]]></description>
+	<description><![CDATA[Averon]]></description>
 	<display-name>Averon</display-name>
 
 	<!-- //// -->
@@ -33,7 +33,7 @@ Copyright (C) 2004 Potix Corporation. All Rights Reserved.
 		-->
 		<init-param>
 			<param-name>update-uri</param-name>
-			<param-value>/zkau</param-value>
+			<param-value>/averon/zkau</param-value>
 		</init-param>
 
 		<!-- [Optional] Specifies whether to compress the output
@@ -58,11 +58,11 @@ Copyright (C) 2004 Potix Corporation. All Rights Reserved.
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>zkLoader</servlet-name>
-		<url-pattern>*.zul</url-pattern>
+		<url-pattern>/averon/*.zul</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>zkLoader</servlet-name>
-		<url-pattern>*.zhtml</url-pattern>
+		<url-pattern>/averon/*.zhtml</url-pattern>
 	</servlet-mapping>
 	<!-- You can also map to other extensions.
 	<servlet-mapping>
