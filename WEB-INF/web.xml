@@ -15,7 +15,7 @@ Copyright (C) 2004 Potix Corporation. All Rights Reserved.
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
                              https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
 
-	<description><![CDATA[Averon]]></description>
+	<description><![CDATA[ZK Sandbox]]></description>
 	<display-name>Averon</display-name>
 
 	<!-- //// -->
@@ -58,11 +58,11 @@ Copyright (C) 2004 Potix Corporation. All Rights Reserved.
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>zkLoader</servlet-name>
-		<url-pattern>/averon/*.zul</url-pattern>
+		<url-pattern>*.zul</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>zkLoader</servlet-name>
-		<url-pattern>/averon/*.zhtml</url-pattern>
+		<url-pattern>*.zhtml</url-pattern>
 	</servlet-mapping>
 	<!-- You can also map to other extensions.
 	<servlet-mapping>
@@ -106,7 +106,7 @@ Copyright (C) 2004 Potix Corporation. All Rights Reserved.
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>auEngine</servlet-name>
-		<url-pattern>/averon/zkau/*</url-pattern>
+		<url-pattern>/zkau/*</url-pattern>
 	</servlet-mapping>
 
 	<!-- Uncomment if you want to use the ZK filter to post process the HTML output
