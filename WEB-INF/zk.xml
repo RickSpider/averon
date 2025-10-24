@@ -39,14 +39,11 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 		<value>true</value>
 	</library-property>
 
-
-
-	
-	
-	 <desktop-config>
-        <!-- Permite que ZK acepte peticiones AJAX desde el proxy -->
+<!-- Permite que ZK acepte peticiones AJAX desde el proxy -->
+<!-- 	 <desktop-config>
+        
         <update-uri-check>false</update-uri-check>
-    </desktop-config>
+    </desktop-config>  -->
     
     <library-property>
     <name>org.zkoss.zk.ui.http.forwardedPrefix</name>
