@@ -27,6 +27,8 @@
 
 						<listheader hflex="min" align="center" />
 						<listheader label="ID" align="center"
+							hflex="min" visible="false"/>
+						<listheader label="ID INTERNO" align="center"
 							hflex="min" />
 						<listheader label="NOMBRE" align="center" />
 						<listheader label="ESTABLECIMIENTO" align="center" />
@@ -53,7 +55,13 @@
 							<textbox value="@bind(vm.filtroColumns[2])"
 								instant="true" onChange="@command('filtrarSucursal')"
 								hflex="1" />
-						</auxheader>		
+						</auxheader>	
+						
+							<auxheader>
+							<textbox value="@bind(vm.filtroColumns[3])"
+								instant="true" onChange="@command('filtrarSucursal')"
+								hflex="1" />
+						</auxheader>	
 					
 						<auxheader />
 
@@ -64,7 +72,8 @@
 						<listitem>
 							<listcell />
 							<listcell label="@load(each[0])" style="text-align: right;"/>
-							<listcell label="@load(each[1])" style="text-align: left;"/>
+							<listcell label="@load(each[1])" style="text-align: right;"/>
+							<listcell label="@load(each[2])" style="text-align: left;"/>
 							<listcell label="@load(each[2])" style="text-align: left;"/>
 							
 

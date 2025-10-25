@@ -34,7 +34,7 @@
 							hflex="min" visible = 'false'/>
 						<listheader label="ID INTERNO" align="center"
 							hflex="min" />
-						<listheader label="RAZON SOCIAL" align="center" />
+						<listheader label="NOMBRE COMPLETO/RAZON SOCIAL" align="center" />
 						<listheader label="DOC#/RUC" align="center" />
 						<listheader label="EMAIL" align="center" />
 						<listheader label="TELEFONO" align="center" />
@@ -82,6 +82,8 @@
 								hflex="1" />
 						</auxheader>	
 						
+						
+						
 										
 					
 						<auxheader />
@@ -93,7 +95,7 @@
 						<listitem >
 							<listcell />
 							<listcell label="@load(each[0])" style="text-align: right;"/>
-							<listcell label="@load(each[1])" style="text-align: left;"/>
+							<listcell label="@load(each[1])" style="text-align: right;"/>
 							<listcell label="@load(each[2])" style="text-align: left;"/>
 							<listcell label="@load(each[3])" style="text-align: left;"/>
 							<listcell label="@load(each[4])" style="text-align: left;"/>

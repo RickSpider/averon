@@ -1,4 +1,10 @@
-Select p.productoid, p.nombre, m.nombre , tum.tipo, p.precioventa, tiva.tipo
+Select p.productoid, 
+p.idinterno,
+p.nombre, 
+m.nombre , 
+tum.tipo, 
+p.precioventa, 
+tiva.tipo
 from productos p
 join tipos tiva on tiva.tipoid = p.ivatipoid
 join tipos tum on tum.tipoid = p.unidadmedidatipoid

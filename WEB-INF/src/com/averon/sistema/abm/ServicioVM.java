@@ -64,7 +64,7 @@ public class ServicioVM extends TemplateViewModelLocal{
 
 	private void inicializarFiltros() {
 
-		this.filtroColumns = new String[4];
+		this.filtroColumns = new String[5];
 
 		for (int i = 0; i < this.filtroColumns.length; i++) {
 

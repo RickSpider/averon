@@ -27,7 +27,9 @@
 
 						<listheader hflex="min" align="center" />
 						<listheader label="ID" align="center"
-							hflex="min"  />
+							hflex="min" visible="false" />
+						<listheader label="ID INTERNO" align="center"
+							hflex="min" />
 						<listheader label="PRODUCTO" align="center" />
 						<listheader label="MARCA" align="center" />
 						<listheader label="UNIDAD MEDIDA" align="center" />
@@ -66,13 +68,19 @@
 						</auxheader>			
 						
 						<auxheader>
-							<textbox value="@bind(vm.filtroColumns[3])"
+							<textbox value="@bind(vm.filtroColumns[4])"
 								instant="true" onChange="@command('filtrarProducto')"
 								hflex="1" />
 						</auxheader>		
 						
 						<auxheader>
-							<textbox value="@bind(vm.filtroColumns[4])"
+							<textbox value="@bind(vm.filtroColumns[5])"
+								instant="true" onChange="@command('filtrarProducto')"
+								hflex="1" />
+						</auxheader>
+						
+						<auxheader>
+							<textbox value="@bind(vm.filtroColumns[6])"
 								instant="true" onChange="@command('filtrarProducto')"
 								hflex="1" />
 						</auxheader>						
@@ -85,14 +93,14 @@
 
 						<listitem>
 							<listcell />
-							<listcell label="@load(each[0])" style="text-align: right;"/>
-							<listcell label="@load(each[1])" style="text-align: left;"/>
+							<listcell label="@load(each[0])" />
+							<listcell label="@load(each[1])" style="text-align: right;"/>
 							<listcell label="@load(each[2])" style="text-align: left;"/>
-							<listcell label="@load(each[3]) " />
-							<listcell label="@load(each[4]) @converter('formatedNumber', format='#,###.##')" style="text-align: right;"/>
-							<listcell label="@load(each[5])" />
+							<listcell label="@load(each[3]) " style="text-align: left;"/>
+							<listcell label="@load(each[4])" />
+							<listcell label="@load(each[5]) @converter('formatedNumber', format='#,###.##')" style="text-align: right;"/>
 							
-
+							<listcell label="@load(each[6])" />
 
 							<listcell>
 								<hlayout>

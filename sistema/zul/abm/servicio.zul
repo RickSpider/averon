@@ -80,7 +80,7 @@
 						<listitem>
 							<listcell />
 							<listcell label="@load(each[0])" style="text-align: right;"/>
-							<listcell label="@load(each[1])" style="text-align: left;"/>
+							<listcell label="@load(each[1])" style="text-align: right;"/>
 							<listcell label="@load(each[2])" style="text-align: left;"/>
 							<listcell label="@load(each[3]) @converter('formatedNumber', format='#,###.##')" style="text-align: right;" />
 							<listcell label="@load(each[4])" />

@@ -63,7 +63,7 @@ public class SucursalVM extends TemplateViewModelLocal{
 
 	private void inicializarFiltros() {
 
-		this.filtroColumns = new String[3];
+		this.filtroColumns = new String[4];
 
 		for (int i = 0; i < this.filtroColumns.length; i++) {
 

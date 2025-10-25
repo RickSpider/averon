@@ -28,7 +28,7 @@
 						<listheader hflex="min" align="center" />
 						<listheader label="ID" align="center"
 							hflex="min" visible='false'/>
-						<listheader label="ID Interno" align="center"
+						<listheader label="ID INTERNO" align="center"
 							hflex="min"/>
 						<listheader label="NOMBRE COMPLETO" align="center" />
 						<listheader label="DOCUMENTO #" align="center" />
@@ -90,7 +90,7 @@
 						<listitem>
 							<listcell />
 							<listcell label="@load(each[0])" style="text-align: right;"/>
-							<listcell label="@load(each[1])" style="text-align: left;"/>
+							<listcell label="@load(each[1])" style="text-align: right;"/>
 							<listcell label="@load(each[2])" style="text-align: left;"/>
 							<listcell label="@load(each[3])" style="text-align: left;"/>
 							<listcell label="@load(each[4])" style="text-align: left;"/>

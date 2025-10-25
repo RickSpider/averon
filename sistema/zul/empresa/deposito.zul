@@ -21,16 +21,15 @@
 				<listbox emptyMessage="lista vacía..." mold="paging" autopaging="true"
 					vflex="1" model="@load(vm.lDepositos)" checkmark="true">
 
-					
-
 					<listhead >
 
 						<listheader hflex="min" align="center" />
 						<listheader label="ID" align="center"
+							hflex="min" visible="false"/>
+						<listheader label="ID INTERNO" align="center"
 							hflex="min" />
 						<listheader label="SUCRUSAL" align="center" />
 						<listheader label="NOMBRE" align="center" />						
-
 						<listheader align="center" width="150px" />
 
 
@@ -54,7 +53,13 @@
 							<textbox value="@bind(vm.filtroColumns[2])"
 								instant="true" onChange="@command('filtrarDeposito')"
 								hflex="1" />
-						</auxheader>			
+						</auxheader>
+						
+						<auxheader>
+							<textbox value="@bind(vm.filtroColumns[3])"
+								instant="true" onChange="@command('filtrarDeposito')"
+								hflex="1" />
+						</auxheader>				
 					
 						<auxheader />
 
@@ -65,8 +70,9 @@
 						<listitem>
 							<listcell />
 							<listcell label="@load(each[0])" style="text-align: right;"/>
-							<listcell label="@load(each[1])" style="text-align: left;"/>	
-							<listcell label="@load(each[2])" style="text-align: left;"/>							
+							<listcell label="@load(each[1])" style="text-align: right;"/>	
+							<listcell label="@load(each[2])" style="text-align: left;"/>	
+							<listcell label="@load(each[3])" style="text-align: left;"/>							
 
 
 							<listcell>

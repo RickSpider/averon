@@ -98,17 +98,17 @@ public class MarcaVM extends TemplateViewModelLocal{
 	}
 
 	@Command
-	public void modalMarca(@BindingParam("depositoid") long depositoid) {
+	public void modalMarca(@BindingParam("marcaid") long marcaid) {
 
 		
-		if (depositoid != -1) {
+		if (marcaid != -1) {
 
 			if (!this.opEditarMarca)
 				return;
 
 			this.editar = true;
 
-			this.marcaSelected = this.reg.getObjectById(Marca.class.getName(), depositoid);
+			this.marcaSelected = this.reg.getObjectById(Marca.class.getName(), marcaid);
 
 		} else {
 

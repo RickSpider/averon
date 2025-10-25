@@ -65,7 +65,7 @@ public class FuncionarioVM extends TemplateViewModelLocal{
 
 	private void inicializarFiltros() {
 
-		this.filtroColumns = new String[6];
+		this.filtroColumns = new String[7];
 
 		for (int i = 0; i < this.filtroColumns.length; i++) {
 
@@ -184,11 +184,13 @@ public class FuncionarioVM extends TemplateViewModelLocal{
 			
 			EmpresaUsuario eu = new EmpresaUsuario();
 			eu.setUsuario(this.funcionarioSelected.getUsuario());
+			eu.setActual(true);
 			eu = this.save(eu);
 			
 			SucursalUsuario su = new SucursalUsuario();
 			su.setUsuario(this.funcionarioSelected.getUsuario());
 			su.setSucursal(getCurrentSucursal());
+			su.setActual(true);
 			
 			su = this.save(su);
 			

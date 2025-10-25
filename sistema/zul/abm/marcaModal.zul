@@ -12,11 +12,11 @@
 		<tablelayout columns="2">
 
 			<tablechildren>
-				<label value="ID:" style="font-weight:bold" />
+				<label value="ID Interno:" style="font-weight:bold" />
 			</tablechildren>
 
 			<tablechildren>
-				<textbox value="@load(vm.marcaSelected.marcaid)"
+				<textbox value="@load(vm.marcaSelected.idInterno)"
 					readonly="true" />
 			</tablechildren>
 

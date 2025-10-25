@@ -65,7 +65,7 @@ public class ProductoVM extends TemplateViewModelLocal{
 
 	private void inicializarFiltros() {
 
-		this.filtroColumns = new String[5];
+		this.filtroColumns = new String[7];
 
 		for (int i = 0; i < this.filtroColumns.length; i++) {
 
