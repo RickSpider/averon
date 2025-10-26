@@ -82,7 +82,7 @@ public class CalendarVM extends TemplateViewModelLocal{
 	    );
 
 	    this.lFuncionariosSearchModel = crearSearchModel(
-	        this.um.getSql("funcionario/buscarfuncionarios.sql").replace("?1", String.valueOf(this.empresaid)),
+	        this.um.getSql("funcionario/buscarFuncionarios.sql").replace("?1", String.valueOf(this.empresaid)),
 	        o -> new FuncionarioSearchModel(
 	        	Long.parseLong(o[0].toString()),
 	            Long.parseLong(o[1].toString()),
