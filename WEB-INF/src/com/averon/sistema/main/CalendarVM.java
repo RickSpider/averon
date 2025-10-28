@@ -258,7 +258,9 @@ public class CalendarVM extends TemplateViewModelLocal{
 		generarSearchModels();
 		
 		CalendarItem ci = (CalendarItem) event.getCalendarItem();
-		
+		this.funcionarioSearchModelSelected = null;
+		this.personaSearchModelSelected = null;	
+		this.servicioSearchModelSelected = null;	
 		 
 		
 		if (ci == null) {
@@ -274,9 +276,7 @@ public class CalendarVM extends TemplateViewModelLocal{
 			this.agendamientoSelected.setEstado(this.reg.getObjectBySigla(Tipo.class, ParamsLocal.SIGLA_TIPO_AGENDAMIENTOESTADO_PENDIENTE));
 			
 			this.estadoTipoSearchModelSelected = new TipoSearchModel(this.agendamientoSelected.getEstado());
-			this.personaSearchModelSelected = null;	
-			this.funcionarioSearchModelSelected = null;	
-			this.servicioSearchModelSelected = null;	
+			
 			
 			
 		}else {
@@ -285,7 +285,13 @@ public class CalendarVM extends TemplateViewModelLocal{
 			
 			this.agendamientoSelected = this.reg.getObjectById(Agendamiento.class.getName(), ci.getAgendamientoid()	); 		
 			this.personaSearchModelSelected = new PersonaSearchModel(this.agendamientoSelected.getPersona());
-			this.funcionarioSearchModelSelected = new FuncionarioSearchModel(this.agendamientoSelected.getFuncionario());
+			
+			//this.funcionarioSearchModelSelected = new FuncionarioSearchModel(this.agendamientoSelected.getFuncionario());
+			
+			if (this.agendamientoSelected.getFuncionario() != null) {
+			    this.funcionarioSearchModelSelected = new FuncionarioSearchModel(this.agendamientoSelected.getFuncionario());
+			} 
+						
 			this.servicioSearchModelSelected = new ServicioSearchModel(this.agendamientoSelected.getServicio());
 			this.estadoTipoSearchModelSelected = new TipoSearchModel(this.agendamientoSelected.getEstado());
 		}
@@ -348,12 +354,13 @@ public class CalendarVM extends TemplateViewModelLocal{
 		
 		this.agendamientoSelected.setPersona(this.personaSearchModelSelected.getPersona());
 		this.agendamientoSelected.setServicio(this.servicioSearchModelSelected.getServicio());
-		this.agendamientoSelected.setFuncionario(this.funcionarioSearchModelSelected.getFuncionario());
 		this.agendamientoSelected.setEstado(this.estadoTipoSearchModelSelected.getTipo());
 		
-		Optional.ofNullable(funcionarioSearchModelSelected)
-	        .map(FuncionarioSearchModel::getFuncionario)
-	        .ifPresent(agendamientoSelected::setFuncionario);
+		agendamientoSelected.setFuncionario(
+			    Optional.ofNullable(funcionarioSearchModelSelected)
+			            .map(FuncionarioSearchModel::getFuncionario)
+			            .orElse(null)
+			);
 		
 		this.save(this.agendamientoSelected);
 		
