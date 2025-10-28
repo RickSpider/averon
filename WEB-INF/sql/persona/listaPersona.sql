@@ -1,8 +1,8 @@
 Select 
 p.personaid, 
 p.idInterno, 
-COALESCE(p.razonsocial, p.nombre || ' ' || p.apellido) AS nombre_completo, 
-COALESCE(p.ruc, p.documentonum, '') AS documento,
+COALESCE(NULLIF(p.razonsocial,''), p.nombre || ' ' || COALESCE(p.apellido, '')) AS nombre_completo, 
+COALESCE(NULLIF(p.ruc,''), NULLIF(p.documentonum,''), '') AS documento,
 p.email,
 p.telefono,
 p.fechanacimiento

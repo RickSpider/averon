@@ -135,7 +135,8 @@ public class CalendarVM extends TemplateViewModelLocal{
 		// TODO Auto-generated method stub
 	}
 	
-	public void dataCharger() throws ParseException {
+	@NotifyChange("*")
+	private void dataCharger() throws ParseException {
 		
 		Calendar calendar = Calendar.getInstance();
 		this.calendarModel = new SimpleCalendarModel();
@@ -297,8 +298,7 @@ public class CalendarVM extends TemplateViewModelLocal{
 	
 	 //listen to the calendar-update of event data, usually send when user drag the event data 
 	@Listen(CalendarsEvent.ON_ITEM_UPDATE + " = #calendars")
-	/*@Command
-	@NotifyChange("*")*/
+	@NotifyChange("*")
     public void updateAgendamiento(@BindingParam("event")CalendarsEvent event) throws ParseException {
     	
     	//System.out.println("entre en el update");

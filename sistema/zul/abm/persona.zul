@@ -81,11 +81,7 @@
 								instant="true" onChange="@command('filtrarPersona')"
 								hflex="1" />
 						</auxheader>	
-						
-						
-						
-										
-					
+	
 						<auxheader />
 
 					</auxhead>

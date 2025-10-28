@@ -46,19 +46,19 @@ public class Agendamiento extends ModeloERPInterno implements Serializable{
 	private Date fin;
 	
 	@ManyToOne
-	@JoinColumn(name = "servicioid")
+	@JoinColumn(name = "servicioid", nullable = true)
 	private Producto servicio;
 	
 	@ManyToOne
-	@JoinColumn(name = "funcionarioid")
+	@JoinColumn(name = "funcionarioid", nullable = true)
 	private Funcionario funcionario;
 	
 	@ManyToOne
-	@JoinColumn(name = "personaid")
+	@JoinColumn(name = "personaid", nullable = true)
 	private Persona persona;
 	
 	@ManyToOne
-	@JoinColumn(name = "estadotipoid")
+	@JoinColumn(name = "estadotipoid", nullable = true)
 	private Tipo estado;
 
 	@Override
