@@ -254,13 +254,15 @@ public class CalendarVM extends TemplateViewModelLocal{
 	@Listen(CalendarsEvent.ON_ITEM_CREATE + " = #calendars; " + CalendarsEvent.ON_ITEM_EDIT + "  = #calendars")
 	public void agendamientoModal(CalendarsEvent event) {
 
+		CalendarItem ci = (CalendarItem) event.getCalendarItem();
 		event.stopClearGhost();
 		
 		System.out.println("========HOrarios======");
+		System.out.println(ci.getBeginDate().getTimezoneOffset());
 		System.out.println(event.getBeginDate());
 		System.out.println(TimeZone.getDefault());
 
-		CalendarItem ci = (CalendarItem) event.getCalendarItem();
+		
 		this.funcionarioSearchModelSelected = null;
 		this.personaSearchModelSelected = null;	
 		this.servicioSearchModelSelected = null;	
