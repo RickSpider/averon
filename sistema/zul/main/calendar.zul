@@ -29,7 +29,7 @@
 			<separator bar="true" height="20px" />
 			
 			<calendars id="calendars" firstDayOfWeek="Sunday" 
-				 mold="month" timeZone="America/Asuncion=GMT-3" model="@load(vm.calendarModel)" 
+				 mold="month" timeZone="America=GMT-3" model="@load(vm.calendarModel)" 
 				 beginTime="6" endTime="23" timeslots="4" hflex="1" vflex="1"
 				 onItemUpdate="@command('updateAgendamiento', event=event)"/>
 		
