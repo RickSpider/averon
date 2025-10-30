@@ -258,7 +258,7 @@ public class CalendarVM extends TemplateViewModelLocal{
 		event.stopClearGhost();
 		
 		System.out.println("========HOrarios======");
-		System.out.println(ci.getBeginDate().getTimezoneOffset());
+		System.out.println(event.getBeginDate().getTimezoneOffset());
 		System.out.println(event.getBeginDate());
 		System.out.println(TimeZone.getDefault());
 
