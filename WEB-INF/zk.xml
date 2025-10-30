@@ -77,5 +77,11 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 		<addon-uri>/WEB-INF/lang-addon.xml</addon-uri>
 	</language-config>
 	
+	<library-property>
+    	<name>org.zkoss.web.preferred.timeZone</name>
+    	<value>GMT-3</value>
+	</library-property>
+	
+	
 	
 </zk>
