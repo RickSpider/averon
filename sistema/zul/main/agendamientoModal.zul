@@ -33,7 +33,7 @@
 				<tablechildren>
 					<datebox
 						value="@bind(vm.agendamientoSelected.inicio)" 
-						timeZone="GMT-3"
+						timeZone="America/Asuncion" 
 						format="dd/MM/yyyy HH:mm" width="150px"/>
 				</tablechildren>
 
@@ -44,7 +44,7 @@
 				<tablechildren>
 					<datebox
 						value="@bind(vm.agendamientoSelected.fin)" 
-						timeZone="GMT-3"
+						timeZone="America/Asuncion" 
 						format="dd/MM/yyyy HH:mm" width="150px"/>
 				</tablechildren>
 
