@@ -16,12 +16,14 @@ import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.calendar.Calendars;
 import org.zkoss.calendar.event.CalendarsEvent;
 import org.zkoss.calendar.impl.SimpleCalendarModel;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Listen;
+import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.Notification;
 import org.zkoss.zul.ListModelArray;
 import org.zkoss.zul.Window;
@@ -55,20 +57,30 @@ public class CalendarVM extends TemplateViewModelLocal{
 	private ServicioSearchModel servicioSearchModelSelected;
 	private TipoSearchModel estadoTipoSearchModelSelected;
 	
+	@Wire
+	private Calendars calendars;
+	
 	@Init(superclass = true)
 	public void initCalendarVM() throws ParseException {
 		
 		//this.calendarModel = new SimpleCalendarModel();
 		this.empresaid = this.getCurrentEmpresa().getEmpresaid();
-		this.dataCharger();
+		
 		
 	}
 	
 	@AfterCompose(superclass = true)
-	public void afterComposeCalendarVM(@ContextParam(ContextType.VIEW) Component view) {
+	public void afterComposeCalendarVM(@ContextParam(ContextType.VIEW) Component view) throws ParseException {
+		
+		// inyecta componentes anotados con @Wire
+	    Selectors.wireComponents(view, this, false);
 		
 		//esto permite usar el id con el linsten para el metodo
 		Selectors.wireEventListeners(view, this);
+		
+		
+		this.dataCharger();
+		this.calendars.setBeginTime(7);
 	}
 	
 	private void generarSearchModels() {
@@ -244,6 +256,8 @@ public class CalendarVM extends TemplateViewModelLocal{
 			
 		}*/
 		
+		
+		this.calendars.setModel(this.calendarModel);
 	}
 	
 	private Window modal;
@@ -465,6 +479,14 @@ public class CalendarVM extends TemplateViewModelLocal{
 
 	public void setEstadoTipoSearchModelSelected(TipoSearchModel estadoTipoSearchModelSelected) {
 		this.estadoTipoSearchModelSelected = estadoTipoSearchModelSelected;
+	}
+
+	public Calendars getCalendars() {
+		return calendars;
+	}
+
+	public void setCalendars(Calendars calendars) {
+		this.calendars = calendars;
 	}
 	
 	
