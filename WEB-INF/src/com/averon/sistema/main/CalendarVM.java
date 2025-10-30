@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.TimeZone;
 
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.BindingParam;
@@ -255,8 +256,10 @@ public class CalendarVM extends TemplateViewModelLocal{
 
 		event.stopClearGhost();
 		
-		generarSearchModels();
-		
+		System.out.println("========HOrarios======");
+		System.out.println(event.getBeginDate());
+		System.out.println(TimeZone.getDefault());
+
 		CalendarItem ci = (CalendarItem) event.getCalendarItem();
 		this.funcionarioSearchModelSelected = null;
 		this.personaSearchModelSelected = null;	
@@ -295,6 +298,8 @@ public class CalendarVM extends TemplateViewModelLocal{
 			this.servicioSearchModelSelected = new ServicioSearchModel(this.agendamientoSelected.getServicio());
 			this.estadoTipoSearchModelSelected = new TipoSearchModel(this.agendamientoSelected.getEstado());
 		}
+		
+		generarSearchModels();
 	
 		modal = (Window) Executions.createComponents("/sistema/zul/main/agendamientoModal.zul", this.mainComponent,
 				null);
