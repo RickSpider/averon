@@ -261,11 +261,11 @@ public class CalendarVM extends TemplateViewModelLocal{
 		
 		event.stopClearGhost();
 		
-		System.out.println("========HOrarios======");
+		/*System.out.println("========HOrarios======");
 		System.out.println(event.getBeginDate());
 		System.out.println(event.getData());
 		System.out.println(event.getData().toString());
-		System.out.println(TimeZone.getDefault());
+		System.out.println(TimeZone.getDefault());*/
 
 		
 		this.funcionarioSearchModelSelected = null;
