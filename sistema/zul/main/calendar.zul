@@ -30,7 +30,7 @@
 			
 			<calendars id="calendars" firstDayOfWeek="Sunday" 
 				 timeZone="Main=GMT-3" model="@load(vm.calendarModel)" 
-				 timeslots="4" hflex="1" vflex="1"
+				 beginTime="6" timeslots="4" hflex="1" vflex="1"
 				 onItemUpdate="@command('updateAgendamiento', event=event)"/>
 		
 		</div>
