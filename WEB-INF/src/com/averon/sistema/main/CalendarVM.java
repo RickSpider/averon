@@ -255,14 +255,13 @@ public class CalendarVM extends TemplateViewModelLocal{
 	private boolean editar = false;
 	
 
-	//@Listen(CalendarsEvent.ON_ITEM_CREATE + " = #calendars; " + CalendarsEvent.ON_ITEM_EDIT + "  = #calendars")
-	@Command
-	public void agendamientoModal(@BindingParam("event") CalendarsEvent event) {
+	@Listen(CalendarsEvent.ON_ITEM_CREATE + " = #calendars; " + CalendarsEvent.ON_ITEM_EDIT + "  = #calendars")
+	public void agendamientoModal(CalendarsEvent event) {
 
 		
 		event.stopClearGhost();
 		
-		System.out.println("========HOrarios======");
+		/*System.out.println("========HOrarios======");
 		System.out.println(event.getBeginDate());
 		/*System.out.println(event.getData());
 		System.out.println(event.getData().toString());
@@ -315,7 +314,7 @@ public class CalendarVM extends TemplateViewModelLocal{
 		modal.doModal();
 	}
 	
-	 //listen to the calendar-update of event data, usually send when user drag the event data 
+	//listen to the calendar-update of event data, usually send when user drag the event data 
 	//@Listen(CalendarsEvent.ON_ITEM_UPDATE + " = #calendars")
 	@NotifyChange("*")
     public void updateAgendamiento(@BindingParam("event")CalendarsEvent event) throws ParseException {
