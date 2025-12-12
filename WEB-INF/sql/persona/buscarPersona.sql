@@ -7,7 +7,7 @@ COALESCE(
         COALESCE(NULLIF(p.nombre, ''), '') || ' ' ||
         COALESCE(NULLIF(p.apellido, ''), '')
     )
-) AS nombre_completo
+) AS nombre_completo,
 COALESCE(td.tipo, p.documentonum, '')  as TipoDoc, 
 COALESCE(p.ruc, p.documentonum, '') AS documento
 from personas p 
