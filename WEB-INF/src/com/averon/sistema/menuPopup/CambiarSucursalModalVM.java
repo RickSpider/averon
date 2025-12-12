@@ -112,6 +112,7 @@ public class CambiarSucursalModalVM extends TemplateMenuPopup {
 			
 		}
 		
+		Sessions.getCurrent().setAttribute("sucursalid", this.sucursalUsuarioSelected.getSucursal().getSucursalid());	
 		
 		this.windowModal.detach();
 		Clients.evalJavaScript("window.location.reload();");

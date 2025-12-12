@@ -7,7 +7,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.TimeZone;
 
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.BindingParam;
@@ -16,12 +15,14 @@ import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.calendar.Calendars;
 import org.zkoss.calendar.event.CalendarsEvent;
 import org.zkoss.calendar.impl.SimpleCalendarModel;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Listen;
+import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.Notification;
 import org.zkoss.zul.ListModelArray;
 import org.zkoss.zul.Window;
@@ -43,6 +44,7 @@ public class CalendarVM extends TemplateViewModelLocal{
 
 	private SimpleCalendarModel calendarModel;
 	
+	
 	private long empresaid;
 	
 	private ListModelArray<PersonaSearchModel> lPersonasSearchModel;
@@ -56,21 +58,29 @@ public class CalendarVM extends TemplateViewModelLocal{
 	private TipoSearchModel estadoTipoSearchModelSelected;
 	
 	
+	@Wire
+	private Calendars calendars;
+	
 	
 	@Init(superclass = true)
 	public void initCalendarVM() throws ParseException {
 		
 		//this.calendarModel = new SimpleCalendarModel();
 		this.empresaid = this.getCurrentEmpresa().getEmpresaid();
-		this.dataCharger();
+		
 		
 	}
 	
 	@AfterCompose(superclass = true)
-	public void afterComposeCalendarVM(@ContextParam(ContextType.VIEW) Component view) {
+	public void afterComposeCalendarVM(@ContextParam(ContextType.VIEW) Component view) throws ParseException {
 		
 		//esto permite usar el id con el linsten para el metodo
 		Selectors.wireEventListeners(view, this);
+		//esto permite usar el @wire
+		Selectors.wireComponents(view, this, false);
+		this.calendars.setBeginTime(6);
+		this.calendars.setTimeslots(4);		
+		this.dataCharger();
 	}
 	
 	private void generarSearchModels() {
@@ -141,7 +151,7 @@ public class CalendarVM extends TemplateViewModelLocal{
 	@NotifyChange("*")
 	private void dataCharger() throws ParseException {
 		
-		Calendar calendar = Calendar.getInstance();
+		//Calendar calendar = Calendar.getInstance();
 		this.calendarModel = new SimpleCalendarModel();
 		
 		/*String sqlSuscripcion = this.um.getSql("calendar/listDatosSuscripcion.sql").replace("?1", this.getCurrentEmpresa().getEmpresaid()+"");
@@ -246,7 +256,7 @@ public class CalendarVM extends TemplateViewModelLocal{
 			
 		}*/
 		
-		
+		this.calendars.setModel(calendarModel);
 		
 	}
 	
@@ -256,15 +266,19 @@ public class CalendarVM extends TemplateViewModelLocal{
 	
 
 	@Listen(CalendarsEvent.ON_ITEM_CREATE + " = #calendars; " + CalendarsEvent.ON_ITEM_EDIT + "  = #calendars")
-	public void agendamientoModal(CalendarsEvent event) {
-
+	//@Command
+	public void agendamientoModal(@BindingParam("event") CalendarsEvent event) {
 		
 		event.stopClearGhost();
 		
-		/*System.out.println("========HOrarios======");
+		System.out.println("========HOrarios======");
+		
 		System.out.println(event.getBeginDate());
-		/*System.out.println(event.getData());
-		System.out.println(event.getData().toString());
+		System.out.println(event.getEndDate());
+		
+		
+		
+		/*System.out.println(event.getData().toString());
 		System.out.println(TimeZone.getDefault());*/
 
 		
@@ -279,8 +293,8 @@ public class CalendarVM extends TemplateViewModelLocal{
 			
 			this.agendamientoSelected = new Agendamiento();
 			
-			this.agendamientoSelected.setInicio(event.getBeginDate());
-			this.agendamientoSelected.setFin(event.getEndDate());
+			this.agendamientoSelected.setInicio(this.um.calcularFecha(event.getBeginDate(), Calendar.HOUR, this.calendars.getBeginTime()));
+			this.agendamientoSelected.setFin(this.um.calcularFecha(event.getEndDate(), Calendar.HOUR, this.calendars.getBeginTime()));
 			this.agendamientoSelected.setSucursal(this.getCurrentSucursal());
 			this.agendamientoSelected.setAgendamientoTipo(this.reg.getObjectBySigla(Tipo.class, ParamsLocal.SIGLA_TIPO_AGENDAMIENTO_SERVICIO));
 			this.agendamientoSelected.setEstado(this.reg.getObjectBySigla(Tipo.class, ParamsLocal.SIGLA_TIPO_AGENDAMIENTOESTADO_PENDIENTE));
@@ -315,7 +329,7 @@ public class CalendarVM extends TemplateViewModelLocal{
 	}
 	
 	//listen to the calendar-update of event data, usually send when user drag the event data 
-	//@Listen(CalendarsEvent.ON_ITEM_UPDATE + " = #calendars")
+	@Listen(CalendarsEvent.ON_ITEM_UPDATE + " = #calendars")
 	@NotifyChange("*")
     public void updateAgendamiento(@BindingParam("event")CalendarsEvent event) throws ParseException {
     	

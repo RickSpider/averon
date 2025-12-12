@@ -111,6 +111,7 @@ public class CambiarEmpresaModalVM extends TemplateMenuPopup {
 		
 		usuarioCredencial.setExtra(this.empresaUsuarioSelected.getEmpresa().getRazonSocial());
 		Sessions.getCurrent().setAttribute("userCredential", usuarioCredencial);
+		Sessions.getCurrent().setAttribute("empresaid", this.empresaUsuarioSelected.getEmpresa().getEmpresaid());	
 		
 		this.windowModal.detach();
 		Clients.evalJavaScript("window.location.reload();");

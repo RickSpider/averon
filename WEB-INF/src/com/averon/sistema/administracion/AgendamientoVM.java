@@ -12,12 +12,14 @@ import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.util.Notification;
+import org.zkoss.zul.ListModelArray;
 import org.zkoss.zul.Window;
 
 import com.averon.modelo.Agendamiento;
 import com.averon.modelo.Funcionario;
 import com.averon.modelo.Persona;
 import com.averon.modelo.Producto;
+import com.averon.seachModel.PersonaSearchModel;
 import com.averon.util.ParamsLocal;
 import com.averon.util.TemplateViewModelLocal;
 import com.doxacore.components.finder.FinderModel;
@@ -112,8 +114,6 @@ public class AgendamientoVM extends TemplateViewModelLocal{
 
 	@Command
 	public void modalAgendamiento(@BindingParam("agendamientoid") long agendamientoid) {
-
-		this.inicializarFinders();
 		
 		if (agendamientoid != -1) {
 
@@ -129,8 +129,8 @@ public class AgendamientoVM extends TemplateViewModelLocal{
 			this.agendamientoSelected = new Agendamiento();
 			this.agendamientoSelected.setSucursal(this.getCurrentSucursal());
 			
-			this.agendamientoSelected.setInicio(this.um.modificarHorasMinutosSegundos(new Date(), 9, 0, 0, 0));
-			this.agendamientoSelected.setFin(this.um.modificarHorasMinutosSegundos(new Date(), 10, 0, 0, 0));
+			this.agendamientoSelected.setInicio(this.um.modificarHorasMinutosSegundos(new Date(), 7, 0, 0, 0));
+			this.agendamientoSelected.setFin(this.um.modificarHorasMinutosSegundos(new Date(), 8, 0, 0, 0));
 			this.agendamientoSelected.setSucursal(this.getCurrentSucursal());
 			this.agendamientoSelected.setAgendamientoTipo(this.reg.getObjectBySigla(Tipo.class, ParamsLocal.SIGLA_TIPO_AGENDAMIENTO_SERVICIO));
 
@@ -168,142 +168,7 @@ public class AgendamientoVM extends TemplateViewModelLocal{
 		this.cargarAgendamientos();
 
 	}
-	
-	private FinderModel funcionarioFinder;
-	private FinderModel personaFinder;
-	private FinderModel servicioFinder;
-	private FinderModel agendamientoTipoFinder;
-
-	@NotifyChange("*")
-	public void inicializarFinders() {
 		
-		String buscarTiposPorSiglaTipotipo = this.um.getCoreSql("buscarTiposPorSiglaTipotipo.sql");
-		
-		String sqlAgendamientoTipo = buscarTiposPorSiglaTipotipo.replace("?1", ParamsLocal.SIGLA_TIPOTIPO_AGENDAMIENTO );
-		agendamientoTipoFinder = new FinderModel("agendamientoTipo",sqlAgendamientoTipo );
-
-		String sqlFuncionario = this.um.getSql("funcionario/buscarFuncionarios.sql").replace("?1", this.getCurrentEmpresa().getEmpresaid()+"");
-		funcionarioFinder = new FinderModel("Funcionario", sqlFuncionario);
-		
-		String sqlPersona = this.um.getSql("persona/buscarPersona.sql").replace("?1", this.getCurrentEmpresa().getEmpresaid()+"");
-		personaFinder = new FinderModel("Persona", sqlPersona);
-		
-		String sqlServicio = this.um.getSql("servicio/buscarServicio.sql")
-				.replace("?1", this.getCurrentEmpresa().getEmpresaid()+"");
-		servicioFinder = new FinderModel("Servicio", sqlServicio);
-		
-	}
-
-	public void generarFinders(@BindingParam("finder") String finder) {
-
-		if (finder.compareTo(this.funcionarioFinder.getNameFinder()) == 0) {
-
-			this.funcionarioFinder.generarListFinder();
-			BindUtils.postNotifyChange(null, null, this.funcionarioFinder, "listFinder");
-
-			return;
-		}
-		
-		if (finder.compareTo(this.personaFinder.getNameFinder()) == 0) {
-
-			this.personaFinder.generarListFinder();
-			BindUtils.postNotifyChange(null, null, this.personaFinder, "listFinder");
-
-			return;
-		}
-		
-		if (finder.compareTo(this.agendamientoTipoFinder.getNameFinder()) == 0) {
-
-			this.agendamientoTipoFinder.generarListFinder();
-			BindUtils.postNotifyChange(null, null, this.agendamientoTipoFinder, "listFinder");
-
-			return;
-		}
-		
-		if (finder.compareTo(this.servicioFinder.getNameFinder()) == 0) {
-
-			this.servicioFinder.generarListFinder();
-			BindUtils.postNotifyChange(null, null, this.servicioFinder, "listFinder");
-
-			return;
-		}
-
-	}
-
-	@Command
-	public void finderFilter(@BindingParam("filter") String filter, @BindingParam("finder") String finder) {
-
-		if (finder.compareTo(this.agendamientoTipoFinder.getNameFinder()) == 0) {
-
-			this.agendamientoTipoFinder.setListFinder(this.filtrarListaObject(filter, this.agendamientoTipoFinder.getListFinderOri()));
-			BindUtils.postNotifyChange(null, null, this.agendamientoTipoFinder, "listFinder");
-
-			return;
-		}
-		
-		
-		if (finder.compareTo(this.funcionarioFinder.getNameFinder()) == 0) {
-
-			this.personaFinder.setListFinder(this.filtrarListaObject(filter, this.funcionarioFinder.getListFinderOri()));
-			BindUtils.postNotifyChange(null, null, this.funcionarioFinder, "listFinder");
-
-			return;
-		}
-		
-
-		if (finder.compareTo(this.personaFinder.getNameFinder()) == 0) {
-
-			this.personaFinder.setListFinder(this.filtrarListaObject(filter, this.personaFinder.getListFinderOri()));
-			BindUtils.postNotifyChange(null, null, this.personaFinder, "listFinder");
-
-			return;
-		}
-		
-		if (finder.compareTo(this.servicioFinder.getNameFinder()) == 0) {
-
-			this.servicioFinder.setListFinder(this.filtrarListaObject(filter, this.servicioFinder.getListFinderOri()));
-			BindUtils.postNotifyChange(null, null, this.servicioFinder, "listFinder");
-
-			return;
-		}
-
-
-	}
-
-	@Command
-	@NotifyChange("*")
-	public void onSelectetItemFinder(@BindingParam("id") Long id, @BindingParam("finder") String finder) {
-		
-		if (finder.compareTo(this.agendamientoTipoFinder.getNameFinder()) == 0) {
-
-			this.agendamientoSelected.setAgendamientoTipo(this.reg.getObjectById(Tipo.class.getName(), id));
-			
-			this.habilitarGrupos();
-			
-			return;
-		}
-		
-
-		if (finder.compareTo(this.funcionarioFinder.getNameFinder()) == 0) {
-
-			this.agendamientoSelected.setFuncionario(this.reg.getObjectById(Funcionario.class.getName(), id));
-			return;
-		}
-		
-		if (finder.compareTo(this.personaFinder.getNameFinder()) == 0) {
-
-			this.agendamientoSelected.setPersona(this.reg.getObjectById(Persona.class.getName(), id));
-			return;
-		}
-		
-		if (finder.compareTo(this.servicioFinder.getNameFinder()) == 0) {
-
-			this.agendamientoSelected.setServicio(this.reg.getObjectById(Producto.class.getName(), id));
-			return;
-		}
-
-	}
-	
 	public void habilitarGrupos() {
 		
 		this.gruposDisable[0] = false;
@@ -378,22 +243,6 @@ public class AgendamientoVM extends TemplateViewModelLocal{
 		this.filtroColumns = filtroColumns;
 	}
 
-	public FinderModel getFuncionarioFinder() {
-		return funcionarioFinder;
-	}
-
-	public void setFuncionarioFinder(FinderModel funcionarioFinder) {
-		this.funcionarioFinder = funcionarioFinder;
-	}
-
-	public FinderModel getPersonaFinder() {
-		return personaFinder;
-	}
-
-	public void setPersonaFinder(FinderModel personaFinder) {
-		this.personaFinder = personaFinder;
-	}
-
 	public Boolean[] getGruposDisable() {
 		return gruposDisable;
 	}
@@ -402,21 +251,6 @@ public class AgendamientoVM extends TemplateViewModelLocal{
 		this.gruposDisable = gruposDisable;
 	}
 
-	public FinderModel getAgendamientoTipoFinder() {
-		return agendamientoTipoFinder;
-	}
-
-	public void setAgendamientoTipoFinder(FinderModel agendamientoTipoFinder) {
-		this.agendamientoTipoFinder = agendamientoTipoFinder;
-	}
-
-	public FinderModel getServicioFinder() {
-		return servicioFinder;
-	}
-
-	public void setServicioFinder(FinderModel servicioFinder) {
-		this.servicioFinder = servicioFinder;
-	}
 	
 	
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Init;
+import org.zkoss.zk.ui.Sessions;
 
 import com.averon.modelo.Empresa;
 import com.averon.modelo.EmpresaUsuario;
@@ -27,28 +28,33 @@ public abstract class TemplateViewModelLocal extends TemplateViewModel{
 		
 	}
 	
-	private EmpresaUsuario getCurrentEmpresaUsuario() {
+	/*private EmpresaUsuario getCurrentEmpresaUsuario() {
 		
-		/*String campo[] = {"usuario", "actual"};
-		Object[] value = {this.getCurrentUser(), true};*/
+		//String campo[] = {"usuario", "actual"};
+		//Object[] value = {this.getCurrentUser(), true};
 		
 		return this.reg.getObjectByColumns(EmpresaUsuario.class, new String[]{"usuario", "actual"}, new Object[]{this.getCurrentUser(), true});
 		
-	}
+	}*/
 	
 	protected Empresa getCurrentEmpresa() {
 		
-		return this.getCurrentEmpresaUsuario().getEmpresa();
+		Empresa out = new Empresa();
+		out.setEmpresaid((Long) Sessions.getCurrent().getAttribute("empresaid"));
+		
+		return out;
+		//return this.getCurrentEmpresaUsuario().getEmpresa();
 	}
 	
 	protected SucursalUsuario getCurrentSucursalUsuario() {
 		
-		EmpresaUsuario eu = this.getCurrentEmpresaUsuario();
+	//	EmpresaUsuario eu = this.getCurrentEmpresaUsuario();
 		
 		/*String campo[] = {"empresa","usuario", "actual"};
 		Object[] value = {eu.getEmpresa(),eu.getUsuario(), true};*/
 		
-		SucursalUsuario su = this.reg.getObjectByColumns(SucursalUsuario.class, new String[]{"empresa","usuario", "actual"}, new Object[]{eu.getEmpresa(),eu.getUsuario(), true});
+		//SucursalUsuario su = this.reg.getObjectByColumns(SucursalUsuario.class, new String[]{"empresa","usuario", "actual"}, new Object[]{eu.getEmpresa(),eu.getUsuario(), true});
+		SucursalUsuario su = this.reg.getObjectByColumns(SucursalUsuario.class, new String[]{"empresa","usuario", "actual"}, new Object[]{this.getCurrentEmpresa(),this.getCurrentUser(), true});
 		
 		return su;
 		
@@ -56,7 +62,12 @@ public abstract class TemplateViewModelLocal extends TemplateViewModel{
 	
 	protected Sucursal getCurrentSucursal() {
 		
-		return this.getCurrentSucursalUsuario().getSucursal();
+		Sucursal out = new Sucursal();
+		out.setSucursalid((Long) Sessions.getCurrent().getAttribute("sucursalid"));
+		
+		return out;
+		
+		//return this.getCurrentSucursalUsuario().getSucursal();
 	}
 	
 	protected <T extends ModeloERP> T save(T m) {
