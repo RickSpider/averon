@@ -6,5 +6,5 @@ COALESCE(td.tipo, p.documentonum, '')  as TipoDoc,
 COALESCE(p.ruc, p.documentonum, '') AS documento
 from personas p 
 left join tipos td on td.tipoid = p.documentotipoid
-where p.empresaid = 2
+where p.empresaid = ?1
 order by p.personaid asc;

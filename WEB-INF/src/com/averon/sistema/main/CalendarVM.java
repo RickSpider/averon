@@ -89,8 +89,8 @@ public class CalendarVM extends TemplateViewModelLocal{
 	        o -> new PersonaSearchModel(
 	        	Long.parseLong(o[0].toString()),
 	            Long.parseLong(o[1].toString()),
-	            o[2].toString(),
-	            o[4].toString()
+	            o[2] == null ? "" : o[2].toString(),
+	            o[4] == null ? "" : o[4].toString()
 	        )
 	    );
 
@@ -99,8 +99,8 @@ public class CalendarVM extends TemplateViewModelLocal{
 	        o -> new FuncionarioSearchModel(
 	        	Long.parseLong(o[0].toString()),
 	            Long.parseLong(o[1].toString()),
-	            o[2].toString(),
-	            o[3].toString()
+	            o[2] == null ? "" : o[2].toString(),
+	            o[3] == null ? "" : o[3].toString()
 	        )
 	    );
 
@@ -109,8 +109,8 @@ public class CalendarVM extends TemplateViewModelLocal{
 	        o -> new ServicioSearchModel(
 	        	Long.parseLong(o[0].toString()),
 	            Long.parseLong(o[1].toString()),
-	            o[2].toString(),
-	            o[3].toString()
+	            o[2] == null ? "" : o[2].toString(),
+	            o[3] == null ? "" : o[3].toString()
 	        )
 	    );
 	    
