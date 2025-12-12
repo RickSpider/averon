@@ -1,7 +1,13 @@
 Select 
 p.personaid as id, 
 p.idInterno, 
-COALESCE(NULLIF(p.razonsocial, ''), p.nombre || ' ' || p.apellido) AS nombre_completo, 
+COALESCE(
+    NULLIF(p.razonsocial, ''),
+    TRIM(
+        COALESCE(NULLIF(p.nombre, ''), '') || ' ' ||
+        COALESCE(NULLIF(p.apellido, ''), '')
+    )
+) AS nombre_completo
 COALESCE(td.tipo, p.documentonum, '')  as TipoDoc, 
 COALESCE(p.ruc, p.documentonum, '') AS documento
 from personas p 
