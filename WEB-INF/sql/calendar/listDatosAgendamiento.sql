@@ -5,7 +5,13 @@ a.fin,
 a.titulo, 
 a.contenido, 
 s.nombre, 
-COALESCE(p.razonsocial, p.nombre || ' ' || p.apellido) AS nombre_completo, 
+COALESCE(
+    NULLIF(p.razonsocial, ''),
+    TRIM(
+        COALESCE(NULLIF(p.nombre, ''), '') || ' ' ||
+        COALESCE(NULLIF(p.apellido, ''), '')
+    )
+) AS nombre_completo,
 t.sigla,
 te.color
 from agendamientos a
