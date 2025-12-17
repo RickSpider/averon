@@ -73,15 +73,9 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 	</device-config>
 	
 	<!-- //Esto solo usar cuando no anda el calendar   --> 
-	<language-config>
+	<!--  <language-config>
 		<addon-uri>/WEB-INF/lang-addon.xml</addon-uri>
-	</language-config>
-	
-	<library-property>
-    	<name>org.zkoss.web.preferred.timeZone</name>
-    	<value>GMT-3</value>
-	</library-property>
-	
-	
+	</language-config>-->
+
 	
 </zk>
