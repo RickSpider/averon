@@ -50,6 +50,10 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
     <value>/averon</value>
 	</library-property>
 	
+	<listener>
+		<listener-class>org.zkoss.zkmax.au.websocket.WebSocketWebAppInit</listener-class>
+	</listener>
+	
 	<library-property>
 		<name>org.zkoss.theme.preferred</name>
 		<value>iceblue_c</value>
@@ -73,9 +77,9 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 	</device-config>
 	
 	<!-- //Esto solo usar cuando no anda el calendar   --> 
-	 <language-config>
+<!--  	<language-config>
 		<addon-uri>/WEB-INF/lang-addon.xml</addon-uri>
-	</language-config>
+	</language-config> -->
 
 	
 </zk>
